@@ -1,16 +1,30 @@
-import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
-import ReactDOM from 'react-dom/client'
+/*
+Этот код является примером использования React для создания веб-приложения. Вот пошаговое объяснение:
+import React from 'react': Импортируется библиотека React, которая позволяет создавать компоненты и управлять состоянием приложения.
+import {BrowserRouter} from 'react-router-dom': Импортируется компонент BrowserRouter из библиотеки react-router-dom, который используется для маршрутизации в приложении React.
+import ReactDOM from 'react-dom/client': Импортируется метод createRoot из модуля react-dom/client для создания корневого узла React, который позволяет рендерить приложение с использованием экспериментального рендеринга.
+import App from './App.jsx': Импортируется основной компонент приложения App из файла App.jsx.
+import './normalize.scss' и import './variables.scss': Импортируются файлы стилей для нормализации стилей и определения переменных.
+ReactDOM.createRoot(document.getElementById('root')).render(...): Создается корневой узел React с помощью createRoot, который привязывается к элементу с идентификатором 'root' в HTML-разметке. Затем метод render используется для рендеринга приложения в этот корневой узел.
+<React.StrictMode>: Оборачивает приложение в строгий режим (StrictMode), который помогает обнаруживать потенциальные проблемы в приложении и обеспечивает более строгую проверку согласованности данных.
+<BrowserRouter>: Оборачивает основной компонент приложения в BrowserRouter, чтобы обеспечить маршрутизацию на основе URL-адресов.
+<App />: Рендерится основной компонент приложения.
+Этот код, таким образом, создает веб-приложение с использованием React, обеспечивает маршрутизацию с помощью BrowserRouter и применяет строгий режим для улучшения качества и надежности приложения.
+*/
 
-import App from './App.jsx'
+import React from 'react'; // Импорт библиотеки React
+import { BrowserRouter } from 'react-router-dom'; // Импорт компонента BrowserRouter для маршрутизации
+import ReactDOM from 'react-dom/client'; // Импорт метода createRoot для рендеринга
 
-import './normalize.scss'
-import './variables.scss'
+import App from './App.jsx'; // Импорт основного компонента приложения
+import './normalize.scss'; // Импорт файла стилей для нормализации стилей
+import './variables.scss'; // Импорт файла стилей для определения переменных
 
+// Создание корневого узла React и рендеринг приложения
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
+  <React.StrictMode> {/* Строгий режим для обнаружения потенциальных проблем */}
+    <BrowserRouter> {/* Обертка для маршрутизации */}
+      <App /> {/* Основной компонент приложения */}
     </BrowserRouter>
   </React.StrictMode>
-)
+);

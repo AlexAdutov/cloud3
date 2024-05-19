@@ -14,25 +14,24 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+# Загрузка переменных среды из файла .env
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Путь к корневой директории проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
-
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+# Основные настройки для разработки
+SECRET_KEY = os.getenv('SECRET_KEY')  # Секретный ключ приложения
+DEBUG = os.getenv('DEBUG')  # Режим отладки
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]  # Разрешенные хосты для приложения
 
 # Application definition
-
+# Установленные приложения
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# Промежуточное программное обеспечение (middleware)
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -56,8 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Корневой URL-конфиг
 ROOT_URLCONF = 'cloud.urls'
 
+# Шаблоны
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -74,11 +76,13 @@ TEMPLATES = [
     },
 ]
 
+# Приложение WSGI (Web Server Gateway Interface)
 WSGI_APPLICATION = 'cloud.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# Настройки базы данных
 
 DATABASES = {
     'default': {
@@ -94,6 +98,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+# Настройки валидации паролей пользователей
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+# Настройки интернационализации
 
 LANGUAGE_CODE = os.getenv('LANGUAGE_CODE')
 
@@ -125,11 +131,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
+# Статические файлы (CSS, JavaScript, изображения)
 
 STATIC_URL = '/django-static/'
 STATIC_ROOT = 'staticfiles'
 
 # Media files
+# Медиа-файлы
 
 MEDIA_URL = f'/{os.getenv("CLOUD_DIR")}/'
 MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv('CLOUD_DIR'))
@@ -137,14 +145,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv('CLOUD_DIR'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+# Тип поля по умолчанию для первичных ключей
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Add custom user
+# Добавление кастомной модели пользователя
 AUTH_USER_MODEL = 'cloud_api.CloudUser'
 
 
 # DRF settings
+# Настройки DRF (Django REST Framework)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -153,6 +164,7 @@ REST_FRAMEWORK = {
     ]
 }
 
+# Настройки безопасности кукисов CSRF и сессий
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_HTTPONLY = True
@@ -179,6 +191,7 @@ SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE')
 
 # LOGGING
 
+# Настройки логирования
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

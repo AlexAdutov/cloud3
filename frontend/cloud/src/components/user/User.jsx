@@ -1,62 +1,81 @@
+/*
+Компонент User представляет собой элемент интерфейса, отображающий информацию о пользователе. Он позволяет администратору просматривать, редактировать и удалять пользователей. В компоненте реализован следующий функционал:
+Отображение имени пользователя, его электронной почты, даты регистрации и последнего входа.
+Отображение количества файлов пользователя и общего размера файлов.
+Возможность переключения прав администратора для каждого пользователя.
+Возможность удаления пользователя.
+Возможность открытия профиля пользователя для просмотра файлов и другой информации.
+Компонент также обеспечивает визуальное отображение состояний загрузки данных, обработки ошибок и успешного выполнения операций.
+*/
+
+
+// Импорт библиотек и пользовательских хуков
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useRequest from '../../hooks/useRequest.jsx'
-import getStorageSize from '../../utils/getStorageSize.js'
-import getConvertedFileSize from '../../utils/getConvertedFileSize.js'
-import getTime from '../../utils/getTime.js'
+import useRequest from '../../hooks/useRequest.jsx' // Подключение пользовательского хука для выполнения HTTP-запросов
+import getStorageSize from '../../utils/getStorageSize.js' // Вспомогательная функция для вычисления общего размера файлов
+import getConvertedFileSize from '../../utils/getConvertedFileSize.js' // Вспомогательная функция для конвертации размера файла
+import getTime from '../../utils/getTime.js' // Вспомогательная функция для форматирования времени
 
-import Loader from '../common/Loader/Loader.jsx'
-import SystemMessage from '../common/SystemMessage/SystemMessage.jsx'
+// Импорт компонентов и стилей
+import Loader from '../common/Loader/Loader.jsx' // Компонент индикатора загрузки
+import SystemMessage from '../common/SystemMessage/SystemMessage.jsx' // Компонент для вывода системных сообщений
+import { CloudContext } from '../../contexts/CloudContext.js' // Импорт контекста приложения
+import './User.scss' // Стили для компонента
+import deleteIcon from '../../images/icons/delete_icon.svg' // Иконка удаления
+import openIcon from '../../images/icons/open_icon.svg' // Иконка открытия профиля пользователя
 
-import { CloudContext } from '../../contexts/CloudContext.js'
 
-import './User.scss'
-import deleteIcon from '../../images/icons/delete_icon.svg'
-import openIcon from '../../images/icons/open_icon.svg'
-
+// Объявление компонента User
 const User = (props) => {
+  const { setUpdateDataFlag, userID } = useContext(CloudContext) // Получение данных пользователя из контекста
 
-  const {setUpdateDataFlag, userID} = useContext(CloudContext)
-
+  // Использование пользовательских хуков для выполнения HTTP-запросов
   const [dataDelete, loadingDelete, errorDelete, requestDelete] = useRequest('delete')
   const [dataAdminRights, loadingAdminRights, errorAdminRights, requestAdminRights] = useRequest()
 
-  const navigate = useNavigate()
+  const navigate = useNavigate() // Хук для навигации по приложению
 
-  const goToUserDashboard = (e) => {
-    userID === +e.currentTarget.dataset.id
-      ? navigate(`/dashboard`)
-      : navigate(`/dashboard/${e.currentTarget.dataset.id}`)
-  }
 
-  const deleteUser = async (e) => {
-    const userId = e.currentTarget.dataset.id
-    const init = {
-      method: 'DELETE',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    // Функция для перехода к панели пользователя
+    const goToUserDashboard = (e) => {
+      // Переход на страницу панели пользователя в зависимости от прав доступа
+      userID === +e.currentTarget.dataset.id
+        ? navigate(`/dashboard`)
+        : navigate(`/dashboard/${e.currentTarget.dataset.id}`)
     }
-    await requestDelete(`/api/users/${userId}/`, init)
-  }
-
-  const toggleAdminRights = async (e) => {
-    const userId = e.currentTarget.dataset.id
-    const init = {
-      method: 'PATCH',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(
-        {
-          is_superuser: e.currentTarget.checked
-        }
-      )
+  
+    // Функция для удаления пользователя
+    const deleteUser = async (e) => {
+      const userId = e.currentTarget.dataset.id // Получение идентификатора пользователя
+      const init = {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      await requestDelete(`/api/users/${userId}/`, init) // Отправка запроса на удаление пользователя
     }
-    requestAdminRights(`/api/users/${userId}/`, init)
-  }
+  
+    // Функция для переключения прав администратора
+    const toggleAdminRights = async (e) => {
+      const userId = e.currentTarget.dataset.id // Получение идентификатора пользователя
+      const init = {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          {
+            is_superuser: e.currentTarget.checked // Установка значения прав администратора
+          }
+        )
+      }
+      requestAdminRights(`/api/users/${userId}/`, init) // Отправка запроса на изменение прав администратора
+    }
+  
 
   useEffect(() => {
     (dataDelete.status === 204 || dataAdminRights.status === 200) && setUpdateDataFlag(true)
