@@ -1,0 +1,32 @@
+$main_color: #4caf50;
+$main_color_hover: darken($main_color, 3%);
+$main_color_active: darken($main_color, 5%);
+
+$main_bg_color: #ffffff;
+$main_element_color: #e5e5e5;
+
+$description_color: #b3b3b3;
+
+$input_color_background: #f2f2f2;
+
+$button_text_color: #ffffff;
+$button_cancel_color: #1e90ff;
+$button_cancel_hover: darken($button_cancel_color, 3%);
+$button_cancel_active: darken($button_cancel_color, 5%);
+$button_disabled: #b3b3b3;
+
+$button_download_color: #1e90ff;
+$button_download_hover: darken($button_cancel_color, 3%);
+$button_download_active: darken($button_cancel_color, 5%);
+
+$button_delete_color: #ff0000;
+$button_delete_hover: darken($button_delete_color, 3%);
+$button_delete_active: darken($button_delete_color, 5%);
+
+$header_text_color: #ffffff;
+$success_text_color: #4caf50;
+$error_text_color: #ff0000;
+
+$mobile: 359px;
+$tablet: 767px;
+$desktop: 1023px;

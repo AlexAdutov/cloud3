@@ -1,0 +1,129 @@
+@use '../../variables';
+
+.header {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: variables.$main_color;
+  padding: 0 40px;
+  color: variables.$header_text_color;
+  font-weight: 400;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+  .header__logo {
+    font-size: 50px;
+  }
+
+  .header__nav {
+    display: flex;
+    height: 100%;
+
+    .header__nav-items {
+      display: flex;
+      list-style: none;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      align-items: center;
+      font-size: 24px;
+
+      .header__nav-item {
+        color: variables.$header_text_color;
+        cursor: pointer;
+
+        &:not(:last-child) {
+          margin-right: 30px;
+        }
+      }
+
+      .header__nav-item:not(:last-child) {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: -5px;
+          right: -18px;
+          width: 2px;
+          height: 40px;
+          background-color: variables.$header_text_color;
+        }
+      }
+
+      .header__nav-item_username {
+
+        &::before {
+          content: 'Мои файлы';
+          position: absolute;
+          bottom: -20px;
+          left: 50%;
+          transform: translate(-50%);
+          font-size: 10px;
+          width: 55px;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  a {
+    color: variables.$header_text_color;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: variables.$desktop) {
+
+  .header {
+
+    .header__logo {
+      font-size: 40px;
+    }
+
+    .header__nav {
+
+      .header__nav-items {
+        font-size: 20px;
+
+        .header__nav-item:not(:last-child) {
+
+          &::after {
+            height: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: variables.$tablet) {
+
+  .header {
+    height: unset;
+    padding: 15px;
+
+    .header__logo {
+      font-size: 30px;
+    }
+
+    .header__nav {
+
+      .header__nav-items {
+        width: 150px;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 16px;
+
+        .header__nav-item:not(:last-child) {
+          margin-bottom: 15px;
+          margin-right: 0;
+
+          &::after,
+          &::before {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+}

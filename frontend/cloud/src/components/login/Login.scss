@@ -1,0 +1,50 @@
+@use '../../variables';
+
+.login-container {
+  width: 360px;
+  padding: 78px 0 0;
+  margin: auto;
+
+  .login-container__login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 360px;
+    height: 198px;
+    margin: 0 auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    .login-container__description {
+      margin: 15px 0 0;
+      color: variables.$description_color;
+      font-size: 12px;
+
+      a {
+        color: variables.$main_color;
+        text-decoration: none;
+      }
+    }
+
+    .login-container__login-invalid {
+      font-size: 11px;
+      margin-top: -13px;
+      color: red;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .login-container__text {
+    color: variables.$main_color;
+    margin-bottom: 15px;
+  }
+
+  .logout-button {
+    font-weight: 400;
+    width: unset;
+  }
+}

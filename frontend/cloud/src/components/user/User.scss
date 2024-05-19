@@ -1,0 +1,254 @@
+@use '../../variables';
+
+.user-container {
+  display: flex;
+  width: 100%;
+  height: 106px;
+  flex-direction: column;
+  padding: 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid variables.$main_element_color;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+
+  .user-info {
+    position: relative;
+    height: 16px;
+    padding: 15px 15px;
+    border: 1px solid #4caf50;
+    font-size: 14px;
+
+    &::before {
+      position: absolute;
+      top: -6px;
+      left: 12px;
+      background-color: #ffffff;
+      font-size: 11px;
+      padding: 0 3px;
+    }
+  }
+
+  .user-container__username {
+    min-width: 132px;
+    margin-right: 5px;
+
+    &::before {
+      content: 'Имя пользователя';
+    }
+  }
+
+  .user-container__is-admin {
+    min-width: 82px;
+    margin-right: 5px;
+    text-align: center;
+
+    &::before {
+      content: 'Администратор';
+    }
+  }
+
+  .user-container__files {
+    min-width: 80px;
+    margin-right: 5px;
+    text-align: center;
+
+    &::before {
+      content: 'Кол-во файлов';
+    }
+  }
+
+  .user-container__storage-size {
+    min-width: 100px;
+    margin-right: 5px;
+    text-align: center;
+
+    &::before {
+      content: 'Размер файлов';
+    }
+  }
+
+  .button_open {
+    height: 18px;
+    margin-right: 5px;
+  }
+
+  .button_delete,
+  .button_disabled {
+    height: 18px;
+  }
+
+  .button_disabled {
+    background-color: variables.$button_disabled;
+    cursor: not-allowed;
+
+    &:hover,
+    &:active {
+      background-color: variables.$button_disabled;
+    }
+  }
+
+  .user-container__checkbox {
+    width: 16px;
+    height: 16px;
+  }
+
+  .user-container__top-area,
+  .user-container__bottom-area {
+    display: flex;
+    width: 100%;
+  }
+
+  .user-container__top-area {
+    margin-bottom: 10px;
+  }
+
+  .user-container__email {
+    min-width: 132px;
+    margin-right: 5px;
+
+    &::before {
+      content: 'Email пользователя';
+    }
+  }
+
+  .user-container__date-joined {
+    min-width: 149px;
+    margin-right: 5px;
+
+    &::before {
+      content: 'Дата регистрации';
+    }
+  }
+
+  .user-container__last-login {
+    min-width: 150px;
+    margin-right: 5px;
+
+    &::before {
+      content: 'Последний вход';
+    }
+  }
+}
+
+@media (max-width: variables.$desktop) {
+
+  .user-container {
+
+    &:not(:last-child) {
+      border-bottom: 1px solid variables.$main_element_color;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: variables.$tablet) {
+
+  .user-container {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px;
+    height: unset;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    .user-container__top-area {
+      display: grid;
+      grid-template:
+              'username . .'
+              'isadmin files size'
+              'open-btn delete-btn .';
+      gap: 10px;
+      margin-bottom: 0;
+
+      .user-container__username {
+        grid-area: username;
+        min-width: 134px;
+      }
+
+      .user-container__is-admin {
+        grid-area: isadmin;
+        width: 75px;
+        min-width: unset;
+        z-index: 1;
+      }
+
+      .user-container__files {
+        grid-area: files;
+        left: -60px;
+        width: 76px;
+        min-width: unset;
+      }
+
+      .user-container__storage-size {
+        grid-area: size;
+        left: -118px;
+        width: 75px;
+        min-width: unset;
+      }
+
+      .user-container__open-storage-button {
+        grid-area: open-btn;
+        width: 136px;
+        margin-top: 56px;
+      }
+
+      .user-container__user-delete-button {
+        grid-area: delete-btn;
+        position: relative;
+        left: -1px;
+        width: 136px;
+        margin-top: 56px;
+      }
+
+      .user-container__username,
+      .user-container__is-admin,
+      .user-container__files,
+      .user-container__storage-size,
+      .user-container__open-storage-button {
+        margin-right: 0;
+      }
+    }
+
+    .user-container__bottom-area {
+      position: absolute;
+      top: 67px;
+      left: 10px;
+      display: grid;
+      grid-template:
+              '. email'
+              'date-joined last-login';
+      gap: 10px;
+
+      .user-container__email {
+        grid-area: email;
+        top: -57px;
+        left: -10px;
+        width: 134px
+      }
+
+      .user-container__date-joined {
+        grid-area: date-joined;
+        width: 134px;
+        min-width: unset;
+      }
+
+      .user-container__last-login {
+        grid-area: last-login;
+        left: -10px;
+        width: 134px;
+        min-width: unset;
+      }
+
+      .user-container__email,
+      .user-container__date-joined,
+      .user-container__last-login {
+        margin-right: 0;
+      }
+    }
+  }
+}

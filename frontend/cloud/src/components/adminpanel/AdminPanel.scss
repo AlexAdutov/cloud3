@@ -1,0 +1,56 @@
+@use '../../variables';
+
+.admin-panel-container {
+  max-width: 800px;
+  padding: 35px 0;
+  margin: auto;
+
+  .admin-panel-container__title {
+    color: variables.$main_color;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .admin-panel-container__users {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    min-height: 100px;
+    padding: 30px 40px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+}
+
+@media (max-width: variables.$desktop) {
+
+  .admin-panel-container {
+    width: 700px;
+
+    .admin-panel-container__title {
+      font-size: 20px;
+    }
+
+    .admin-panel-container__users {
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: variables.$tablet) {
+
+  .admin-panel-container {
+    width: 360px;
+
+    .admin-panel-container__title {
+      font-size: 20px;
+      margin-left: 15px;
+    }
+
+    .admin-panel-container__users {
+      padding: 0;
+    }
+  }
+}

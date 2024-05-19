@@ -1,0 +1,6 @@
+.venv
+.idea
+storage
+nginx
+Dockerfile
+entrypoint.sh

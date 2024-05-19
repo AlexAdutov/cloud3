@@ -1,0 +1,80 @@
+@use '../../variables';
+
+.registration-container {
+  width: 360px;
+  padding: 78px 0 0;
+  margin: auto;
+
+  .registration-container__register-form {
+    position: relative;
+    max-width: 360px;
+    height: 260px;
+    margin: 0 auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    .registration-container__description {
+      margin: 15px 0 0;
+      color: variables.$description_color;
+      font-size: 12px;
+
+      a {
+        color: variables.$main_color;
+        text-decoration: none;
+      }
+    }
+
+    .registration-container__username-invalid,
+    .registration-container__password-invalid,
+    .registration-container__email-invalid {
+      font-size: 11px;
+      margin-top: -13px;
+      color: red;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    .registration-container__username-note,
+    .registration-container__password-note {
+      position: absolute;
+      top: 45px;
+      right: -150px;
+      width: 125px;
+      padding: 5px;
+      text-align: left;
+      font-size: 10px;
+      border: 1px solid variables.$main_color;
+      background-color: variables.$main_bg_color;
+      opacity: 0;
+    }
+
+    .registration-container__password-note {
+      top: 105px;
+    }
+  }
+}
+
+@media (max-width: variables.$tablet) {
+
+  .registration-container {
+
+    .registration-container__register-form {
+
+      .registration-container__username-note {
+        top: -5px;
+        right: unset;
+        left: 45px;
+        opacity: 1;
+      }
+
+      .registration-container__password-note {
+        top: 44px;
+        right: unset;
+        left: 45px;
+      }
+    }
+  }
+}

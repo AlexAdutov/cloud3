@@ -1,0 +1,41 @@
+@use '../../variables';
+
+.external-download-container {
+  max-width: 800px;
+  padding: 8% 5% 0;
+  margin: auto;
+}
+
+.external-download-container__file {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 30px 40px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  color: variables.$success_text_color;
+
+  .external-download-container__download-error {
+    color: variables.$error_text_color;
+    margin-bottom: 15px;
+  }
+
+  .external-download-container__download-success {
+    margin-bottom: 15px;
+  }
+
+  .button {
+    font-weight: 400;
+    width: unset;
+  }
+}
+
+@media (max-width: variables.$tablet) {
+
+  .external-download-container__file {
+    padding: 20px;
+    font-size: 14px;
+  }
+}
